@@ -194,8 +194,8 @@ button{font-family:inherit;letter-spacing:inherit}
 .bg-black .seg button{color:var(--on-black)}
 .bg-black .seg button[aria-pressed="true"]{color:var(--ink)}
 .bg-black .seg-thumb{background:var(--on-black)}
-.stack-panels{display:grid}
-.stack-panels>[data-key]{grid-area:1/1;transition:opacity .45s var(--ease),transform .55s var(--ease-out)}
+.stack-panels{display:grid;grid-template-columns:minmax(0,1fr)}
+.stack-panels>[data-key]{grid-area:1/1;min-width:0;transition:opacity .45s var(--ease),transform .55s var(--ease-out)}
 .stack-panels>[data-key].off{visibility:hidden;opacity:0;transform:translateY(10px);pointer-events:none}
 
 /* Héroe de inicio */
@@ -475,7 +475,7 @@ details.more summary::-webkit-details-marker{display:none}
 details.more summary .chev{display:inline-block;transition:transform .35s var(--spring)}
 details.more[open] summary .chev{transform:rotate(90deg)}
 .bg-black details.more summary{color:var(--sky)}
-.tbl{overflow-x:auto;margin-top:16px;border-radius:22px;background:var(--white)}
+.tbl{position:relative;overflow-x:auto;margin-top:16px;border-radius:22px;background:var(--white)}
 .bg-black .tbl{background:var(--black-2)}
 table{border-collapse:collapse;width:100%;min-width:680px;font-size:15px}
 th,td{padding:14px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--fill)}
@@ -583,6 +583,155 @@ footer{background:var(--canvas);border-top:1px solid var(--hair);padding-block:2
 footer .wrap{display:grid;gap:8px;font-size:12px;line-height:1.43;color:var(--ink-2);letter-spacing:-.01em}
 footer strong{color:var(--ink);font-weight:600}
 
+/* Capítulo 5: enfoques de implantación */
+.enf{display:grid;gap:24px;justify-items:start}
+.enf-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:20px;width:100%}
+.enf-vis{display:grid;gap:16px;align-content:center}
+.areas{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px}
+.areas i{aspect-ratio:1;border-radius:8px;background:var(--fill);transition:background .45s var(--ease),transform .45s var(--pop)}
+.areas i.dim{background:#9cc2ec}
+.areas i.on{background:var(--link);transform:scale(1.04)}
+.enf-out h3{font-family:var(--display);font-size:var(--t-h3);font-weight:600}
+.enf-out .alias{color:var(--ink-2);margin:4px 0 16px}
+.enf-out .rec{margin-top:16px;padding-top:14px;border-top:1px solid var(--hair);font-size:15px}
+
+/* Capítulo 5: pasos (banda negra) */
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-bottom:16px}
+.step{appearance:none;border:1px solid var(--black-4);background:var(--black-2);color:var(--on-black);border-radius:20px;padding:16px 14px;text-align:left;cursor:pointer;display:grid;gap:4px;align-content:start;transition:background .35s var(--ease),color .35s,border-color .35s}
+.step .sn{font-family:var(--display);font-size:28px;font-weight:600;line-height:1;color:var(--on-black-2);transition:color .35s}
+.step b{font-size:var(--t-body);font-weight:600}
+.step .sd{font-size:13px;color:var(--on-black-2);transition:color .35s}
+.step:hover{border-color:var(--on-black-2)}
+.step[aria-pressed="true"]{background:var(--on-black);border-color:var(--on-black);color:var(--ink)}
+.step[aria-pressed="true"] .sn,.step[aria-pressed="true"] .sd{color:var(--ink-2)}
+.step-out h3{font-family:var(--display);font-size:var(--t-h3);font-weight:600;margin-bottom:14px}
+.step-out ul{padding-left:1.1em;display:grid;gap:8px}
+.step-out .res{margin-top:16px;padding-top:14px;border-top:1px solid var(--black-3);color:var(--on-black-2);font-size:15px}
+.step-out .res b{color:var(--on-black)}
+
+/* Capítulo 5: modelo de madurez */
+.mlevels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;margin-bottom:24px}
+.mlevels div{display:grid;gap:4px;align-content:start;padding-top:12px;border-top:2px solid var(--ink)}
+.mlevels .n{font-family:var(--display);font-size:24px;font-weight:600;line-height:1}
+.mlevels b{font-size:15px;font-weight:600;line-height:1.3}
+.mlevels span:last-child{font-size:13px;color:var(--ink-2);line-height:1.38}
+.mat{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:20px;align-items:start}
+.mlist{display:grid;padding-block:14px}
+.mrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-top:1px solid var(--fill)}
+.mrow:first-child{border-top:0}
+.mname{font-size:15px;font-weight:600;line-height:1.3}
+.mpick{display:flex;gap:4px}
+.mpick label{position:relative;cursor:pointer;display:block}
+.mpick input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.mpick span{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;font-size:14px;font-weight:600;background:var(--fill);color:var(--ink-2);transition:background .3s var(--ease),color .3s,transform .35s var(--pop)}
+.mpick input:checked+span{background:var(--ink);color:var(--white);transform:scale(1.08)}
+.mpick input:focus-visible+span{outline:2px solid var(--cta);outline-offset:2px}
+.msum{position:sticky;top:120px;display:grid;gap:12px}
+.msum .bignum{font-size:clamp(64px,8vw,88px)}
+.mbars{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:4px;height:120px;align-items:end;border-bottom:1px solid var(--hair)}
+.mbars i{display:block;border-radius:5px 5px 0 0;background:var(--ink);height:calc(var(--v) * 20%);transition:height .55s var(--ease-out),background .3s}
+.mbars i.low{background:var(--dot-red)}
+.mweak b{font-weight:600}
+
+/* Capítulo 5: tiempo, consultores, desafíos y factores */
+.pair2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.pair2 .tile{display:grid;gap:8px;align-content:start}
+.spec{display:grid;gap:18px}
+.spec-line{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;position:relative;padding-top:30px}
+.spec-line::before{content:"";position:absolute;left:7px;right:7px;top:9px;height:2px;background:var(--hair)}
+.spec-line .pt{position:relative;display:grid;gap:4px;align-content:start}
+.spec-line .pt::before{content:"";position:absolute;top:-28px;left:0;width:16px;height:16px;border-radius:50%;background:var(--white);border:2px solid var(--ink-3);box-sizing:border-box}
+.spec-line .pt.on::before{background:var(--link);border-color:var(--link)}
+.spec-line b{font-weight:600}
+.spec-line .pt span{font-size:15px;color:var(--ink-2)}
+.chal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 20px;align-items:start}
+.chal details.b+details.b{margin-top:0}
+.f3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.f3 .tile{display:grid;gap:10px;align-content:start}
+.f3 h3{font-family:var(--display);font-size:24px;font-weight:600}
+.f3 p{font-size:15px;color:var(--ink-2)}
+
+/* Capítulo 6: entregables (banda negra) */
+.dlv{display:grid;gap:20px;margin-bottom:20px}
+.lane{display:grid;gap:10px}
+.lane h3{font-size:12px;font-weight:600;color:var(--on-black-2);letter-spacing:.02em}
+.lane .row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.lane .arr{color:var(--on-black-2);font-size:18px}
+.dbtn{appearance:none;border:1px solid var(--black-4);background:var(--black-2);color:var(--on-black);border-radius:16px;padding:11px 16px;text-align:left;cursor:pointer;display:grid;gap:2px;font-size:15px;font-weight:600;transition:background .35s var(--ease),color .35s,border-color .35s}
+.dbtn small{font-size:12px;font-weight:400;color:var(--on-black-2);transition:color .35s}
+.dbtn:hover{border-color:var(--on-black-2)}
+.dbtn[aria-pressed="true"]{background:var(--on-black);border-color:var(--on-black);color:var(--ink)}
+.dbtn[aria-pressed="true"] small{color:var(--ink-2)}
+.dlv-out h3{font-family:var(--display);font-size:var(--t-h3);font-weight:600;margin:4px 0 12px}
+.dlv-out .body{max-width:68ch}
+.dlv-out .cap2{margin:18px 0 10px;font-size:12px;font-weight:600;color:var(--on-black-2)}
+
+/* Capítulo 6: dos planes, atributos e interdependencias */
+.vs2{display:grid;grid-template-columns:minmax(7em,auto) minmax(0,1fr) minmax(0,1fr);column-gap:24px}
+.vs2 .h{font-family:var(--display);font-size:var(--t-lead);font-weight:600;padding-bottom:14px}
+.vs2 .l{font-size:12px;font-weight:600;color:var(--ink-2);padding:14px 0;border-top:1px solid var(--fill)}
+.vs2 .v{padding:14px 0;border-top:1px solid var(--fill)}
+.rank-top{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;margin-bottom:24px}
+.tog{display:flex;gap:8px;align-items:center;font-size:var(--t-cap);cursor:pointer}
+.tog input{width:18px;height:18px;margin:0;accent-color:var(--cta)}
+.rank{display:grid;gap:16px;margin-bottom:18px}
+.rrow{display:grid;grid-template-columns:8em minmax(0,1fr) auto;gap:14px;align-items:center;transition:opacity .35s}
+.rrow b{font-weight:600}
+.rbar{height:14px;border-radius:980px;background:var(--fill);overflow:hidden}
+.rbar i{display:block;height:100%;min-width:4px;border-radius:980px;background:var(--ink);transition:width .7s var(--ease-out)}
+.rrow:first-child .rbar i{background:var(--link)}
+.rrow output{font-variant-numeric:tabular-nums;font-size:15px;color:var(--ink-2);min-width:10ch;text-align:right}
+.rrow.out{opacity:.28}
+.dep svg{max-width:640px;margin-inline:auto}
+.dep-e{fill:none;stroke:var(--ink-3);stroke-linecap:round;transition:opacity .35s}
+.dep-e.w2{stroke-width:3}
+.dep-e.w3{stroke-width:5;stroke:var(--link)}
+.dep-e.flow{stroke-dasharray:10 7;animation:depflow 1.4s linear infinite}
+@keyframes depflow{to{stroke-dashoffset:-17}}
+html.motion-paused .dep-e.flow{animation-play-state:paused}
+.mk-g{fill:var(--ink-3)}
+.mk-b{fill:var(--link)}
+.dep-n{cursor:pointer;transition:opacity .35s}
+.dep-n circle{fill:var(--white);stroke:var(--ink);stroke-width:1.5;transition:fill .3s}
+.dep-n .svg-t{transition:fill .3s}
+.dep-n.on circle{fill:var(--ink)}
+.dep-n.on .svg-t{fill:var(--white)}
+.dep-n:focus{outline:none}
+.dep-n:focus-visible circle{stroke:var(--cta);stroke-width:3}
+.dep-lbl,.dep-name{transition:opacity .35s}
+.dep.sel .dep-e:not(.hl),.dep.sel .dep-lbl:not(.hl){opacity:.12}
+.dep.sel .dep-n:not(.hl):not(.on),.dep.sel .dep-name:not(.hl){opacity:.35}
+.dep-out{margin-top:18px;min-height:4.4em;max-width:70ch}
+.dep-key{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;font-size:var(--t-cap);color:var(--ink-2)}
+.dep-key i{display:inline-block;width:28px;margin-right:8px;vertical-align:middle;border-top:1.5px solid var(--ink-3)}
+.dep-key i.k2{border-top-width:3px}
+.dep-key i.k3{border-top-width:5px;border-top-color:var(--link)}
+.dmat th,.dmat td{text-align:center}
+.dmat tbody th{text-align:left}
+.dmat td.x{font-weight:700;color:var(--link)}
+.dmat td.diag{background:var(--fill)}
+@media (max-width:860px){
+  .enf-grid,.mat,.f3,.chal{grid-template-columns:minmax(0,1fr)}
+  .msum{position:static}
+}
+@media (max-width:640px){
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .step{grid-template-columns:auto auto 1fr;align-items:baseline;gap:4px 10px;padding:12px 16px}
+  .step .sd{grid-column:1/-1}
+  .mlevels{grid-template-columns:minmax(0,1fr)}
+  .mrow{grid-template-columns:minmax(0,1fr)}
+  .pair2{grid-template-columns:minmax(0,1fr)}
+  .spec-line{grid-template-columns:minmax(0,1fr);padding-top:0;padding-left:30px}
+  .spec-line::before{left:7px;right:auto;top:8px;bottom:8px;width:2px;height:auto}
+  .spec-line .pt::before{top:3px;left:-30px}
+  .vs2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .vs2 .l{grid-column:1/-1;padding-bottom:0}
+  .vs2 .v{border-top:0;padding-top:6px}
+  .vs2>span:first-child{display:none}
+  .rrow{grid-template-columns:minmax(0,1fr) auto}
+  .rrow .rbar{grid-column:1/-1;order:3}
+}
+
 /* Barras sobre bandas negras */
 .under-dark .gnav{background:rgba(22,22,23,.8);border-bottom-color:rgba(255,255,255,.08);color:var(--on-black)}
 .under-dark .gpill{background:var(--black-3)}
@@ -682,7 +831,7 @@ html[data-dir="back"]::view-transition-new(root){animation-name:vt-in-b}
     <nav aria-label="Principal">
       <a href="#inicio" class="hide-s" data-nav="inicio">Inicio</a>
       <a href="#capitulos" data-nav="capitulos">Capítulos</a>
-      <span class="gpill" data-bind="entrega-corta">Entrega 1 · Cap. 1 a 4</span>
+      <span class="gpill" data-bind="entrega-corta">Entrega 2 · Cap. 1 a 6</span>
       <button class="motion-btn" id="motion-btn" type="button" aria-pressed="false" aria-label="Pausar animaciones" title="Pausar animaciones"><svg viewBox="0 0 12 12" aria-hidden="true"><path class="i-pause" d="M3.5 2v8M8.5 2v8"/><path class="i-play" d="M3 1.8v8.4L10 6z"/></svg></button>
     </nav>
   </div>
@@ -697,7 +846,7 @@ html[data-dir="back"]::view-transition-new(root){animation-name:vt-in-b}
   <div class="rail" id="rail" aria-hidden="true"></div>
   <div class="chap-panel" id="chap-panel" hidden>
     <div class="wrap">
-      <div><p class="cp-h" data-bind="entrega">Entrega 1 · Capítulos 1 a 4</p><ul class="cp-open" id="cp-open"></ul></div>
+      <div><p class="cp-h" data-bind="entrega">Entrega 2 · Capítulos 1 a 6</p><ul class="cp-open" id="cp-open"></ul></div>
       <div><p class="cp-h">Próximas entregas</p><ul class="cp-locked" id="cp-locked"></ul></div>
     </div>
   </div>
@@ -709,7 +858,7 @@ html[data-dir="back"]::view-transition-new(root){animation-name:vt-in-b}
 <div class="view" data-view="inicio">
   <section class="hero bg-canvas" id="inicio">
     <div class="wrap">
-      <p class="eyebrow" data-bind="entrega">Entrega 1 · Capítulos 1 a 4</p>
+      <p class="eyebrow" data-bind="entrega">Entrega 2 · Capítulos 1 a 6</p>
       <h1 class="h-hero" tabindex="-1">Los proyectos correctos.<br><span class="g">Bien hechos.</span></h1>
       <p class="sub">Una lectura visual de <em>Secretos para dominar la gestión de portafolios de programas y proyectos</em>, de Liliana Buchtik.</p>
       <div class="btns"><a class="btn btn-fill" href="#cap1">Empezar a leer</a><a class="btn btn-line" href="#capitulos">Ver capítulos</a></div>
@@ -781,7 +930,7 @@ html[data-dir="back"]::view-transition-new(root){animation-name:vt-in-b}
     <div class="wrap wide">
       <div class="head center reveal">
         <h2 class="h-sec" tabindex="-1">17 capítulos: 16 preguntas y una conclusión.</h2>
-        <p class="sub">El libro está escrito como preguntas y respuestas. Esta entrega abre los cuatro primeros; los demás se activan en las próximas entregas.</p>
+        <p class="sub">El libro está escrito como preguntas y respuestas. Ya están abiertos los seis primeros; los demás se activan en las próximas entregas.</p>
       </div>
       <div class="open-grid" id="open-grid" data-stagger></div>
       <div class="locked-head"><h3>Próximas entregas</h3><span class="caption" id="locked-count"></span></div>
@@ -1440,13 +1589,312 @@ html[data-dir="back"]::view-transition-new(root){animation-name:vt-in-b}
   <section class="sec tight bg-canvas" style="padding-top:0"><div class="wrap"><nav class="next" data-next="4" aria-label="Navegación entre capítulos"></nav></div></section>
 </article>
 
+<!-- ============ CAPÍTULO 5 ============ -->
+<article class="view" data-view="cap5" hidden>
+  <header class="chap-hero bg-canvas">
+    <div class="wrap">
+      <p class="kicker">Capítulo 5 de 17</p>
+      <h1 class="h-chap" tabindex="-1">¿Cómo instaurar la gestión de portafolios en tu organización?</h1>
+      <p class="sub">Tres enfoques, cinco pasos y un modelo de madurez para llevar la práctica a una organización, y lo que suele hacerla fracasar.</p>
+      <div class="emblem" aria-hidden="true">
+        <svg viewBox="0 0 480 200">
+          <rect style="--i:0" class="em-g3" x="70" y="150" width="56" height="40" rx="10"/>
+          <rect style="--i:1" class="em-g2" x="140" y="118" width="56" height="72" rx="10"/>
+          <rect style="--i:2" class="em-g1" x="210" y="86" width="56" height="104" rx="10"/>
+          <rect style="--i:3" class="em-c" x="280" y="54" width="56" height="136" rx="10"/>
+          <rect style="--i:4" class="em-dot" x="350" y="22" width="56" height="168" rx="10"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+  <section class="bg-canvas" data-gallery>
+    <div class="wrap gal-head"><h2 class="h-sec">Lo principal.</h2></div>
+    <div class="gal" tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Lo principal del capítulo 5">
+      <article class="gcard"><span class="k">Enfoque</span><div><h3>Tres caminos.</h3><p>Informal, intensivo o incremental. La autora usa y recomienda el incremental.</p></div></article>
+      <article class="gcard"><span class="k">Método</span><div><h3>Cinco pasos.</h3><p>Evaluar, planificar, aprobar, implementar y medir para mejorar. La implantación se trata como un proyecto.</p></div></article>
+      <article class="gcard"><span class="k">Madurez</span><div><h3>Cinco niveles, catorce atributos.</h3><p>Una organización puede estar en niveles distintos según el atributo que se mire.</p></div></article>
+      <article class="gcard"><span class="k">Tiempo</span><div><h3>Meses, a veces años.</h3><p>Con MoP suele tomar de 12 a 18 meses. Hacerlo en 100 días, como en una oficina de estadísticas británica, es la excepción.</p></div></article>
+      <article class="gcard"><span class="k">Éxito</span><div><h3>Procesos, liderazgo y cultura.</h3><p>Los tres factores que distinguen a las organizaciones con buena gestión de portafolios.</p></div></article>
+    </div>
+    <div class="gctrl">
+      <button class="garrow" type="button" data-dir="-1" aria-label="Tarjeta anterior"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M9 2 4 7l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="gdots"></div>
+      <button class="garrow" type="button" data-dir="1" aria-label="Tarjeta siguiente"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="m5 2 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="gplay" type="button" aria-pressed="false" aria-label="Pausar la galería"><svg viewBox="0 0 14 14" aria-hidden="true"><path class="i-pause" d="M4.5 2.5v9M9.5 2.5v9"/><path class="i-play" d="M4 2.2v9.6L11.5 7z"/></svg></button>
+    </div>
+  </section>
+
+  <section class="sec bg-white">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 class="h-sec">¿Por dónde se empieza?</h2>
+        <p class="sub">El enfoque no debería ser arbitrario: depende del contexto, por ejemplo de qué tan madura es ya la gestión de proyectos y programas. Hay tres. Selecciona cada uno.</p>
+      </div>
+      <div class="enf reveal">
+        <div class="seg" data-seg="enf" role="group" aria-label="Enfoque de implantación"><button type="button" data-value="inf" aria-pressed="false">Informal</button><button type="button" data-value="int" aria-pressed="false">Intensivo</button><button type="button" data-value="inc" aria-pressed="true">Incremental</button></div>
+        <div class="enf-grid">
+          <div class="tile enf-vis"><div class="areas" id="areas" aria-hidden="true"></div><p class="caption" id="areas-cap"></p></div>
+          <div class="tile enf-out" id="enf-out" aria-live="polite"></div>
+        </div>
+      </div>
+      <p class="src" style="margin-top:16px">Los nombres de los enfoques vienen del PMI y de MoP. Según la autora, los enfoques estructurados (intensivo e incremental) mejoran mucho las probabilidades de éxito y concretan antes los beneficios. La animación es una ilustración de esta bitácora.</p>
+    </div>
+  </section>
+
+  <section class="sec bg-black">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 class="h-sec">Cinco pasos para instaurarla.</h2>
+        <p class="sub">La autora aconseja tratar la implantación como un proyecto, porque no es un cambio menor. Los pasos se adaptan a cada organización y no tienen por qué ser burocráticos. Selecciona cada paso.</p>
+      </div>
+      <div class="steps reveal" role="group" aria-label="Pasos para instaurar la gestión de portafolios">
+        <button class="step" type="button" data-step="0" aria-pressed="true"><span class="sn">1</span><b>Evaluar</b><span class="sd">el estado actual</span></button>
+        <button class="step" type="button" data-step="1" aria-pressed="false"><span class="sn">2</span><b>Planificar</b><span class="sd">el estado deseado</span></button>
+        <button class="step" type="button" data-step="2" aria-pressed="false"><span class="sn">3</span><b>Aprobar</b><span class="sd">el plan y sus recursos</span></button>
+        <button class="step" type="button" data-step="3" aria-pressed="false"><span class="sn">4</span><b>Implementar</b><span class="sd">los procesos</span></button>
+        <button class="step" type="button" data-step="4" aria-pressed="false"><span class="sn">5</span><b>Medir y optimizar</b><span class="sd">y mejorar siempre</span></button>
+      </div>
+      <div class="tile step-out reveal" id="step-out" aria-live="polite"></div>
+      <p class="src" style="margin-top:16px">A partir de la Fig. 5.1 y del texto del capítulo</p>
+    </div>
+  </section>
+
+  <section class="sec bg-canvas">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 class="h-sec">¿Qué tan madura es tu organización?</h2>
+        <p class="sub">El modelo de madurez de la autora tiene cinco niveles y catorce atributos, y una organización puede estar en niveles distintos según el atributo. Elige el nivel de cada uno para una organización que conozcas.</p>
+      </div>
+      <div class="mlevels reveal" id="mlevels"></div>
+      <div class="mat reveal">
+        <div class="tile mlist" id="mlist"></div>
+        <div class="tile msum" id="msum"></div>
+      </div>
+      <p class="src" style="margin-top:16px">Modelo de madurez de buchtik global® (Fig. 5.3). Los nombres de los niveles y de los atributos son de la autora; las descripciones breves y el promedio son de esta bitácora.</p>
+    </div>
+  </section>
+
+  <section class="sec bg-white">
+    <div class="wrap">
+      <div class="head reveal"><h2 class="h-sec">¿Cuánto tarda, y con quién?</h2></div>
+      <div class="pair2" data-stagger>
+        <div class="tile reveal"><span class="bignum">12–18</span><p><b>meses</b> suele tomar implantarla con el estándar MoP.</p></div>
+        <div class="tile reveal"><span class="bignum grey">100</span><p><b>días</b> le tomó a la Oficina Nacional de Estadísticas del Reino Unido. Para la autora, es la excepción y no la regla.</p></div>
+      </div>
+      <div class="tile spec reveal">
+        <h3 class="h-3">¿Personal interno o consultores?</h3>
+        <p class="body">Más que lo conveniente, importa lo factible: sin experiencia interna hace falta apoyo externo. Y aun con consultores hay varios modelos.</p>
+        <div class="spec-line">
+          <div class="pt"><b>Llave en mano</b><span>El consultor trae procesos y plantillas estándar y los adapta poco.</span></div>
+          <div class="pt"><b>Híbrido</b><span>Una combinación de los dos extremos.</span></div>
+          <div class="pt on"><b>A la medida, con el equipo interno</b><span>Se capacita al personal y se construye en conjunto. Es el que prefiere la autora.</span></div>
+        </div>
+        <p class="caption">Para la autora, el enfoque colaborativo es más lento al inicio pero más sostenible: si los consultores se van y nadie aprendió, el esfuerzo se cae. Cuenta incluso que no quiso cotizar para una empresa sin personal disponible y con ejecutivos que no entendían lo que pedían.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec bg-canvas">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 class="h-sec">Lo que suele salir mal.</h2>
+        <p class="sub">Ocho desafíos que la autora pide anticipar y gestionar como riesgos. Abre cualquiera.</p>
+      </div>
+      <div class="chal reveal">
+        <details class="b"><summary><span class="n">01</span><span>Un cambio cultural difícil</span><span class="pl" aria-hidden="true"></span></summary><p>Exige disciplina y procesos. Habrá resistencia de gerentes funcionales, de proyectos e incluso de la PMO, porque las decisiones clave suben a la oficina de portafolios.</p></details>
+        <details class="b"><summary><span class="n">02</span><span>Desacuerdo sobre la estrategia</span><span class="pl" aria-hidden="true"></span></summary><p>Si ejecutivos y gerencias no coinciden, cada uno la implementa a su modo. Sin alineamiento, la gestión de portafolios aporta poco.</p></details>
+        <details class="b"><summary><span class="n">03</span><span>Sensación de burocracia</span><span class="pl" aria-hidden="true"></span></summary><p>Ningún componente arranca sin aprobación por su valor estratégico, y algunos grupos preferirán seguir en la informalidad.</p></details>
+        <details class="b"><summary><span class="n">04</span><span>Resistencia a la transparencia</span><span class="pl" aria-hidden="true"></span></summary><p>Lo urgente le gana a lo importante y se dejan de hacer las revisiones. A otros les incomoda que alguien vigile el desempeño.</p></details>
+        <details class="b"><summary><span class="n">05</span><span>Conflictos de recursos y multitarea</span><span class="pl" aria-hidden="true"></span></summary><p>Pasar a un pool común de recursos, moverse entre proyectos cuando cambian las prioridades o terminar uno que ya no genera valor causa estrés.</p></details>
+        <details class="b"><summary><span class="n">06</span><span>Entornos muy cambiantes</span><span class="pl" aria-hidden="true"></span></summary><p>Si el alcance cambia todo el tiempo, cuesta mantener un portafolio estable. Hacen falta modelos ágiles y flexibles.</p></details>
+        <details class="b"><summary><span class="n">07</span><span>Política y datos pobres</span><span class="pl" aria-hidden="true"></span></summary><p>Se elige por poder o por emoción, o no hay información de calidad sobre estimaciones, alcance y recursos para seleccionar bien.</p></details>
+        <details class="b"><summary><span class="n">08</span><span>Nadie dedicado al tema</span><span class="pl" aria-hidden="true"></span></summary><p>Sin al menos una persona de tiempo completo y un comité de gobernanza, la gestión de portafolios queda como un deseo de algún ejecutivo.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec bg-ice">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 class="h-sec">Tres factores que marcan la diferencia.</h2>
+        <p class="sub">Según las investigaciones que cita la autora, son los que distinguen a las organizaciones con buena gestión de portafolios.</p>
+      </div>
+      <div class="f3" data-stagger>
+        <div class="tile reveal"><h3>Procesos sólidos</h3><p>Una metodología formal, actualizada y en uso, lo más simple posible.</p></div>
+        <div class="tile reveal"><h3>Liderazgo ejecutivo</h3><p>Liderazgo, patrocinio y apoyo de los ejecutivos, que dedican tiempo, formación y recursos a la práctica.</p></div>
+        <div class="tile reveal"><h3>Una cultura habilitadora</h3><p>Intelectual: se valoran los hechos, no las corazonadas. Emocional: suspender un proyecto no es un fracaso.</p></div>
+      </div>
+      <p class="caption" style="margin:28px 0 10px">Otras condiciones de éxito que enumera la autora:</p>
+      <div class="chips reveal"><span class="chip">Personal dedicado</span><span class="chip">Gerentes con experiencia</span><span class="chip">Objetivos estratégicos claros</span><span class="chip">Comunicación a todo nivel</span><span class="chip">Buenas herramientas</span><span class="chip">Selección y priorización apropiadas</span><span class="chip">Adaptación rápida</span><span class="chip">Foco en los beneficios</span><span class="chip">Puntos de decisión para continuar o terminar</span><span class="chip">Estimaciones confiables</span><span class="chip">Riesgos bien gestionados</span><span class="chip">Recursos gestionados a nivel del portafolio</span><span class="chip">Personal capacitado</span></div>
+      <p class="src" style="margin-top:16px">Fig. 5.4</p>
+    </div>
+  </section>
+
+  <section class="sec bg-canvas">
+    <div class="wrap sum reveal">
+      <p class="kicker">Para recordar</p>
+      <h2 class="h-sec">Instaurar la gestión de portafolios es un proyecto de cambio: mejor por etapas, con ejecutivos comprometidos y alguien dedicado al tema.</h2>
+    </div>
+  </section>
+  <section class="sec tight bg-canvas" style="padding-top:0"><div class="wrap"><nav class="next" data-next="5" aria-label="Navegación entre capítulos"></nav></div></section>
+</article>
+
+<!-- ============ CAPÍTULO 6 ============ -->
+<article class="view" data-view="cap6" hidden>
+  <header class="chap-hero bg-canvas">
+    <div class="wrap">
+      <p class="kicker">Capítulo 6 de 17</p>
+      <h1 class="h-chap" tabindex="-1">¿Cuáles son los entregables de la gestión de portafolios?</h1>
+      <p class="sub">Los documentos que produce la gestión de portafolios, del plan estratégico al diagrama de interdependencias, y la pregunta que responde cada uno.</p>
+      <div class="emblem" aria-hidden="true">
+        <svg viewBox="0 0 480 200">
+          <rect style="--i:0" class="em-a" x="146" y="40" width="160" height="150" rx="16"/>
+          <rect style="--i:1" class="em-g3" x="162" y="26" width="160" height="150" rx="16"/>
+          <rect style="--i:2" class="em-frame" x="178" y="12" width="160" height="150" rx="16"/>
+          <g style="--i:3" class="em-lines"><line x1="214" y1="56" x2="292" y2="82"/><line x1="214" y1="56" x2="240" y2="126"/><line x1="292" y1="82" x2="240" y2="126"/></g>
+          <circle style="--i:4" class="em-c" cx="214" cy="56" r="11"/>
+          <circle style="--i:5" class="em-dot" cx="292" cy="82" r="11"/>
+          <circle style="--i:6" class="em-node" cx="240" cy="126" r="11"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+  <section class="bg-canvas" data-gallery>
+    <div class="wrap gal-head"><h2 class="h-sec">Lo principal.</h2></div>
+    <div class="gal" tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Lo principal del capítulo 6">
+      <article class="gcard"><span class="k">Orden</span><div><h3>Primero el qué, luego el cómo.</h3><p>El plan estratégico del portafolio va antes que el acta; el plan de gestión, después de aprobarla.</p></div></article>
+      <article class="gcard"><span class="k">Autoridad</span><div><h3>El acta autoriza.</h3><p>Inicia formalmente el portafolio y le da a su gerente la autoridad para aplicar los recursos.</p></div></article>
+      <article class="gcard"><span class="k">Tiempo</span><div><h3>Un mapa en el tiempo.</h3><p>El mapa de ruta muestra cuándo y en qué orden se ejecuta cada componente.</p></div></article>
+      <article class="gcard"><span class="k">Entrada</span><div><h3>Todo empieza como una solicitud.</h3><p>Del inventario de solicitudes, cada propuesta necesita un caso de negocio antes de entrar al portafolio.</p></div></article>
+      <article class="gcard"><span class="k">Riesgo</span><div><h3>Nada está aislado.</h3><p>El diagrama de interdependencias muestra qué depende de qué y dónde se concentra el riesgo.</p></div></article>
+    </div>
+    <div class="gctrl">
+      <button class="garrow" type="button" data-dir="-1" aria-label="Tarjeta anterior"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M9 2 4 7l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="gdots"></div>
+      <button class="garrow" type="button" data-dir="1" aria-label="Tarjeta siguiente"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="m5 2 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="gplay" type="button" aria-pressed="false" aria-label="Pausar la galería"><svg viewBox="0 0 14 14" aria-hidden="true"><path class="i-pause" d="M4.5 2.5v9M9.5 2.5v9"/><path class="i-play" d="M4 2.2v9.6L11.5 7z"/></svg></button>
+    </div>
+  </section>
+
+  <section class="sec bg-black">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 class="h-sec">Nueve entregables.</h2>
+        <p class="sub">Según la autora, la mayoría no son opcionales. Aquí están agrupados por la pregunta que responden. Selecciona cada uno.</p>
+      </div>
+      <div class="dlv reveal" id="dlv"></div>
+      <div class="tile dlv-out reveal" id="dlv-out" aria-live="polite"></div>
+      <p class="src" style="margin-top:16px">El orden sigue al PMI, que cita la autora: el plan estratégico va antes que el acta, y el plan de gestión después de aprobada el acta. Las plantillas están en el apéndice del libro.</p>
+    </div>
+  </section>
+
+  <section class="sec bg-white">
+    <div class="wrap">
+      <div class="head reveal"><h2 class="h-sec">Dos planes, dos preguntas.</h2></div>
+      <div class="vs2 reveal">
+        <span></span><span class="h">Plan estratégico</span><span class="h">Plan de gestión</span>
+        <span class="l">Responde</span><span class="v">El qué</span><span class="v">El cómo</span>
+        <span class="l">Nivel</span><span class="v">Alto nivel</span><span class="v">Detallado</span>
+        <span class="l">Horizonte</span><span class="v">Largo plazo</span><span class="v">Corto plazo; por ejemplo, el presupuesto de los siguientes 12 meses</span>
+        <span class="l">Momento</span><span class="v">Antes del acta, a la que guía</span><span class="v">Después de aprobada el acta, de forma iterativa</span>
+        <span class="l">Sirve para</span><span class="v">Decidir con un criterio común qué entra al portafolio</span><span class="v">Ser la línea base del tablero de mando</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec bg-canvas">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 class="h-sec">¿Cómo se comparan los componentes?</h2>
+        <p class="sub">Si todos tienen los mismos atributos, se pueden comparar, filtrar, agrupar y ordenar. El ejemplo del libro: tres préstamos del Departamento de Energía de Estados Unidos que apuntan a reducir las emisiones de CO₂.</p>
+      </div>
+      <div class="tile reveal">
+        <div class="rank-top">
+          <div class="seg" data-seg="rank" role="group" aria-label="Atributo para ordenar"><button type="button" data-value="co2" aria-pressed="true">Menos CO₂</button><button type="button" data-value="emp" aria-pressed="false">Empleos</button></div>
+          <label class="tog" for="only-big"><input type="checkbox" id="only-big">Solo los de 2000 empleos o más</label>
+        </div>
+        <div class="rank" id="rank"></div>
+        <p class="src">Figs. 6.11 a 6.15 · proyectos Ford, Nissan y Tesla del programa de préstamos que cita la autora</p>
+      </div>
+      <p class="caption" style="margin:28px 0 10px">Categorías típicas para agrupar componentes, según el libro:</p>
+      <div class="chips reveal"><span class="chip">Aumento de ganancias</span><span class="chip">Reducción de costos</span><span class="chip">Reducción del riesgo</span><span class="chip">Eficiencia</span><span class="chip">Cumplimiento regulatorio</span><span class="chip">Participación de mercado</span><span class="chip">Mejora de procesos</span><span class="chip">Impacto social</span><span class="chip">Líneas de negocio</span><span class="chip">Objetivos estratégicos</span><span class="chip">Área geográfica</span><span class="chip">Tipo de iniciativa</span></div>
+      <p class="caption" style="margin-top:16px">La mezcla es la cantidad y el tipo de componentes de cada portafolio. En un ejemplo de TI del libro, el 18&nbsp;% del presupuesto va a monitoreo del centro de datos y el 14&nbsp;% a infraestructura.</p>
+    </div>
+  </section>
+
+  <section class="sec bg-ice">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 class="h-sec">Nada está aislado.</h2>
+        <p class="sub">Un componente A depende de B cuando el éxito de A depende en alguna medida de B. Cuantas más interdependencias, más riesgo. El diagrama las hace visibles. Selecciona un componente.</p>
+        <div class="seg" data-seg="dep" role="group" aria-label="Forma de representar"><button type="button" data-value="map" aria-pressed="true">Mapa</button><button type="button" data-value="mat" aria-pressed="false">Matriz</button></div>
+      </div>
+      <div class="stack-panels reveal" id="dep-panels">
+        <div data-key="map">
+          <div class="tile dep" id="dep">
+            <div class="svg-scroll" tabindex="0" role="region" aria-label="Diagrama desplazable">
+              <svg id="dep-svg" viewBox="0 0 580 280" role="group" aria-label="Mapa de interdependencias de ejemplo">
+                <defs>
+                  <marker id="dah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="mk-g" d="M0 1 9 5 0 9z"/></marker>
+                  <marker id="dahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path class="mk-b" d="M0 1 9 5 0 9z"/></marker>
+                </defs>
+                <path class="dep-e w3 flow" data-e="0" marker-end="url(#dahb)" d="M138,70 L258,70"/>
+                <path class="dep-e w3 flow" data-e="1" marker-end="url(#dahb)" d="M138,210 L258,210"/>
+                <path class="dep-e w2" data-e="2" marker-end="url(#dah)" d="M290,98 L290,180"/>
+                <path class="dep-e w2" data-e="3" marker-start="url(#dah)" marker-end="url(#dah)" d="M470,100 L470,180"/>
+                <text class="svg-s dep-lbl" data-e="0" x="198" y="60" text-anchor="middle">aprendizaje</text>
+                <text class="svg-s dep-lbl" data-e="1" x="198" y="200" text-anchor="middle">entregable</text>
+                <text class="svg-s dep-lbl" data-e="2" x="300" y="144">entregable</text>
+                <text class="svg-s dep-lbl" data-e="3" x="480" y="144">recursos</text>
+                <g class="dep-n" data-n="A" tabindex="0" role="button" aria-pressed="false" aria-label="A, rediseño de procesos"><circle cx="110" cy="70" r="26"/><text class="svg-t" x="110" y="75" text-anchor="middle">A</text></g>
+                <g class="dep-n" data-n="B" tabindex="0" role="button" aria-pressed="false" aria-label="B, sistema informático"><circle cx="290" cy="70" r="26"/><text class="svg-t" x="290" y="75" text-anchor="middle">B</text></g>
+                <g class="dep-n" data-n="E" tabindex="0" role="button" aria-pressed="false" aria-label="E, obra A"><circle cx="470" cy="70" r="26"/><text class="svg-t" x="470" y="75" text-anchor="middle">E</text></g>
+                <g class="dep-n" data-n="C" tabindex="0" role="button" aria-pressed="false" aria-label="C, servicio web"><circle cx="110" cy="210" r="26"/><text class="svg-t" x="110" y="215" text-anchor="middle">C</text></g>
+                <g class="dep-n" data-n="D" tabindex="0" role="button" aria-pressed="false" aria-label="D, portal de clientes"><circle cx="290" cy="210" r="26"/><text class="svg-t" x="290" y="215" text-anchor="middle">D</text></g>
+                <g class="dep-n" data-n="F" tabindex="0" role="button" aria-pressed="false" aria-label="F, obra B"><circle cx="470" cy="210" r="26"/><text class="svg-t" x="470" y="215" text-anchor="middle">F</text></g>
+                <text class="svg-s dep-name" data-for="A" x="110" y="30" text-anchor="middle">Rediseño de procesos</text>
+                <text class="svg-s dep-name" data-for="B" x="290" y="30" text-anchor="middle">Sistema informático</text>
+                <text class="svg-s dep-name" data-for="E" x="470" y="30" text-anchor="middle">Obra A</text>
+                <text class="svg-s dep-name" data-for="C" x="110" y="260" text-anchor="middle">Servicio web</text>
+                <text class="svg-s dep-name" data-for="D" x="290" y="260" text-anchor="middle">Portal de clientes</text>
+                <text class="svg-s dep-name" data-for="F" x="470" y="260" text-anchor="middle">Obra B</text>
+              </svg>
+            </div>
+            <p class="dep-out" id="dep-out" aria-live="polite"></p>
+            <div class="dep-key" aria-hidden="true"><span><i></i>Menor</span><span><i class="k2"></i>Media</span><span><i class="k3"></i>Crítica</span></div>
+          </div>
+        </div>
+        <div data-key="mat" class="off" inert>
+          <div class="tbl" tabindex="0" role="region" aria-label="Matriz de interdependencias de ejemplo"><table class="dmat" id="dmat"></table></div>
+          <p class="caption" style="margin-top:12px">Cada fila depende de las columnas marcadas. La diagonal no se usa, porque un componente no depende de sí mismo. A diferencia del mapa, la matriz no muestra intensidades ni dependencias de varios niveles.</p>
+        </div>
+      </div>
+      <p class="src" style="margin-top:14px">Ejemplo ilustrativo de esta bitácora, armado con casos que cuenta la autora. Grosor: intensidad de la dependencia; azul: crítica (Figs. 6.18 a 6.22).</p>
+      <div class="f3" data-stagger style="margin-top:36px">
+        <div class="tile reveal"><h3>Recursos</h3><p>Dos componentes comparten personas o equipos: ingenieros civiles por la mañana en uno y por la tarde en otro, o una sola retroexcavadora.</p></div>
+        <div class="tile reveal"><h3>Entregables</h3><p>Uno necesita lo que produce otro. A la autora le bajaron la prioridad a un entregable crítico sin avisarle y tuvo que escalarlo.</p></div>
+        <div class="tile reveal"><h3>Aprendizaje</h3><p>Uno depende de un estudio o conocimiento que genera otro: en un banco, el sistema esperaba el rediseño de procesos.</p></div>
+      </div>
+      <p class="caption" style="margin-top:18px">También hay dependencias financieras, de calidad, de insumos y de riesgos. Ticketmaster creó su propia herramienta, Dependency Master, y redujo drásticamente los componentes bloqueados por dependencias mal gestionadas.</p>
+    </div>
+  </section>
+
+  <section class="sec bg-canvas">
+    <div class="wrap sum reveal">
+      <p class="kicker">Para recordar</p>
+      <h2 class="h-sec">Cada entregable responde una pregunta: qué haremos, quién lo autoriza, cuándo, cómo, por qué cada componente y qué depende de qué.</h2>
+    </div>
+  </section>
+  <section class="sec tight bg-canvas" style="padding-top:0"><div class="wrap"><nav class="next" data-next="6" aria-label="Navegación entre capítulos"></nav></div></section>
+</article>
+
 </main>
 
 <footer>
   <div class="wrap">
     <p><strong>Fuente:</strong> Buchtik, L. (2025). <em>Secretos para dominar la gestión de portafolios de programas y proyectos</em> (2.ª ed., versión en línea). Buchtik Global. https://lilianabuchtik.com/courses/libro-secretos-para-dominar-la-gestion-de-portafolios-2da-ed-online-2025/</p>
-    <p>Resumen, agrupaciones y diagramas propios a partir de la introducción y los capítulos 1 a 4. Las figuras originales pertenecen a la autora. Las referencias al estándar del PMI, 4.ª edición (2017), son verificación propia.</p>
-    <p>Camilo · Maestría en Gerencia de Proyectos · Gestión de Portafolios · <span data-bind="entrega">Entrega 1 · Capítulos 1 a 4</span> · Octubre de 2026</p>
+    <p>Resumen, agrupaciones y diagramas propios a partir de la introducción y los capítulos 1 a 6. Las figuras originales pertenecen a la autora. Las referencias al estándar del PMI, 4.ª edición (2017), son verificación propia.</p>
+    <p>Camilo · Maestría en Gerencia de Proyectos · Gestión de Portafolios · <span data-bind="entrega">Entrega 2 · Capítulos 1 a 6</span> · Noviembre de 2026</p>
   </div>
 </footer>
 
@@ -1499,7 +1947,7 @@ html[data-dir="back"]::view-transition-new(root){animation-name:vt-in-b}
   CHAPTERS.forEach(c => { c.open = !!document.querySelector(`.view[data-view="cap${c.n}"]`); });
   const isOpen = n => !!(CHAPTERS[n - 1] && CHAPTERS[n - 1].open);
   const OPEN = CHAPTERS.filter(c => c.open), LOCKED = CHAPTERS.filter(c => !c.open);
-  const ENTREGA = 1;
+  const ENTREGA = 2;
   $$('[data-bind="entrega"]').forEach(el => { el.textContent = `Entrega ${ENTREGA} · Capítulos 1 a ${OPEN.length}`; });
   $$('[data-bind="entrega-corta"]').forEach(el => { el.textContent = `Entrega ${ENTREGA} · Cap. 1 a ${OPEN.length}`; });
 
@@ -1976,6 +2424,187 @@ html[data-dir="back"]::view-transition-new(root){animation-name:vt-in-b}
     h.innerHTML = w.map((x, i) => `<span class="w" aria-hidden="true" style="--i:${i};--n:${w.length}">${esc(x)}</span>`).join(' ');
   });
 
+  /* ---------- Capítulo 5: enfoques de implantación ---------- */
+  const areasEl = $('#areas');
+  if (areasEl) {
+    areasEl.innerHTML = '<i></i>'.repeat(24);
+    const cells = Array.from(areasEl.children), areasCap = $('#areas-cap'), enfOut = $('#enf-out');
+    const scattered = new Set([3, 10, 13, 20, 22]);
+    const col = i => i % 8;
+    const ENF = {
+      inf: ['Informal', 'MoP lo llama ad hoc.', [['Dirección', 'De abajo hacia arriba'], ['Cómo', 'Sin plan formal ni cronograma: se avanza como se puede, con bajo perfil, mostrando pequeños logros cuando hay oportunidad.'], ['Apoyo', 'Poco apoyo de los ejecutivos y poca expectativa sobre los resultados.']], '', 'Esfuerzos aislados, sin plan.'],
+      int: ['Intensivo', 'MoP lo llama big bang.', [['Dirección', 'De arriba hacia abajo'], ['Cómo', 'Toda la organización a la vez, como un programa de cambio ambicioso: caso de negocio, visión del estado futuro, modelo operativo y un plan formal con cronograma y recursos.'], ['Conviene', 'Con apoyo ejecutivo y cierta madurez previa en proyectos y programas.'], ['Riesgo', 'Alto si falta compromiso de los ejecutivos o cultura de proyectos y programas.']], '', 'Toda la organización a la vez.'],
+      inc: ['Incremental', 'MoP lo llama evolutivo.', [['Dirección', 'Por áreas, portafolios o procesos'], ['Cómo', 'Se empieza donde más se necesita, o donde es más fácil mostrar resultados, y luego se extiende. También se pueden implantar primero algunos procesos, como gobernanza y recursos, y sumar riesgos y comunicaciones después.'], ['Ejemplos', 'Un cliente de la autora empezó por Ingeniería de Planta; Mater Health Services dejó los riesgos para una etapa posterior; HP empezó por las impresoras de inyección de tinta y siguió con servidores e impresoras láser.']], 'Es el que más usa y recomienda la autora: permite aprender en cada área antes de pasar a la siguiente.', 'Un área primero; después se extiende.']
+    };
+    let enfTimers = [];
+    const setCells = fn => cells.forEach((c, i) => { const s = fn(i); c.classList.toggle('on', s === 'on'); c.classList.toggle('dim', s === 'dim'); });
+    const paintAreas = (k, animate) => {
+      enfTimers.forEach(clearTimeout); enfTimers = [];
+      if (!animate || still()) {
+        setCells(k === 'inf' ? (i => scattered.has(i) ? 'dim' : '') : k === 'int' ? () => 'on' : (i => col(i) < 2 ? 'on' : col(i) < 4 ? 'dim' : ''));
+        return;
+      }
+      setCells(() => '');
+      if (k === 'int') enfTimers.push(setTimeout(() => setCells(() => 'on'), 150));
+      else if (k === 'inf') [...scattered].forEach((n, j) => enfTimers.push(setTimeout(() => cells[n].classList.add('dim'), 220 + j * 380)));
+      else [2, 4, 6, 8].forEach((c, j) => enfTimers.push(setTimeout(() => setCells(i => col(i) < c ? 'on' : ''), 150 + j * 520)));
+    };
+    const showEnf = (k, first) => {
+      const [t, alias, rows, rec, cap] = ENF[k];
+      const html = `<h3>${esc(t)}</h3><p class="alias">${esc(alias)}</p><dl class="facts">${rows.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('')}</dl>${rec ? `<p class="rec">${esc(rec)}</p>` : ''}`;
+      first ? (enfOut.innerHTML = html) : swap(enfOut, html);
+      areasCap.textContent = cap;
+      paintAreas(k, !first);
+    };
+    initSeg($('[data-seg="enf"]'), v => showEnf(v));
+    showEnf('inc', true);
+  }
+
+  /* ---------- Capítulo 5: cinco pasos ---------- */
+  const STEPS = [
+    ['Evaluar el estado actual', ['Definir quiénes patrocinan y promueven la implantación, y asegurar el compromiso de los ejecutivos.', 'Formar el equipo del proyecto con las áreas clave.', 'Crear el presupuesto; por ejemplo, para un consultor externo que asesore y lidere.', 'Evaluar la madurez actual con un modelo de madurez o un cuestionario de prácticas.', 'Hacer una reunión de lanzamiento con los interesados.'], 'Un documento con el estado actual de madurez y la necesidad de una gestión formal de portafolios.'],
+    ['Planificar el estado deseado', ['Definir la visión de la gestión de portafolios, alineada a la de la organización.', 'Analizar a los interesados y crear su registro.', 'Crear el plan de implementación: EDT, enfoque incremental o intensivo y la brecha entre el estado actual y el deseado.', 'Crear el plan de cambio cultural, por ejemplo con un análisis del campo de fuerzas.'], 'El plan de implementación, que algunos llaman mapa de ruta de la implantación.'],
+    ['Aprobar el plan y sus recursos', ['Presentar el plan a los ejecutivos e interesados clave y explicar los problemas que resuelve.', 'Recoger comentarios, ajustar y pedir la aprobación.', 'Conseguir los recursos humanos y financieros: implantarla no es gratis.', 'Comunicar la aprobación.'], 'Un plan aprobado y con recursos asignados.'],
+    ['Implementar los procesos', ['Definir la matriz de roles y responsabilidades.', 'Designar el comité de revisión y su calendario de reuniones.', 'Designar o contratar a los gerentes de portafolios.', 'Definir y aprobar procesos, procedimientos y plantillas, alineados con los de proyectos y programas y lo más simples posible.', 'Crear el plan de comunicaciones e implantar software, si aplica.', 'Capacitar por niveles, probar en un portafolio piloto y gestionar el cambio cultural.', 'Definir métricas para medir el éxito de la implantación.'], 'Procesos en uso, primero en un piloto y luego en el resto de los portafolios.'],
+    ['Medir y optimizar', ['Crear el plan de mejora de procesos, con sus prioridades.', 'Actualizar los procesos y comunicar los cambios.', 'Registrar métricas antes y después de cada mejora; por ejemplo, la desviación entre el ROI planificado y el real.'], 'Mejora continua: no es un esfuerzo de una sola vez.']
+  ];
+  const stepOut = $('#step-out');
+  if (stepOut) {
+    const showStep = (i, first) => {
+      $$('.step').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.step === i)));
+      const [t, items, res] = STEPS[i];
+      const html = `<h3>${i + 1} · ${esc(t)}</h3><ul>${items.map(x => `<li>${esc(x)}</li>`).join('')}</ul><p class="res"><b>Resultado:</b> ${esc(res)}</p>`;
+      first ? (stepOut.innerHTML = html) : swap(stepOut, html);
+    };
+    $$('.step').forEach(b => b.addEventListener('click', () => showStep(+b.dataset.step)));
+    showStep(0, true);
+  }
+
+  /* ---------- Capítulo 5: modelo de madurez ---------- */
+  const MLEVELS = [
+    ['Inexistente o informal', 'No hay gestión de portafolios, o es informal.'],
+    ['Básico', 'Se empieza a hablar del tema y a aplicarlo de forma aislada.'],
+    ['Portafolios o departamento', 'Se implanta formalmente en un área o en algunos portafolios.'],
+    ['Organización', 'Se extiende a toda la organización.'],
+    ['Optimizado', 'Mejora continua: se mantiene vigente y se ajusta con lo aprendido.']
+  ];
+  const MATTR = ['Alcance de la gestión de portafolios', 'Compromiso de los ejecutivos', 'Gestión formal de portafolios', 'Capacitación y conocimiento', 'Software de gestión de portafolios', 'Alineamiento estratégico', 'Terminología común', 'Plantillas y herramientas', 'Cultura de gestión de portafolios', 'Gobernanza del portafolio', 'Procesos, políticas y estándares', 'Gestión de recursos', 'Repositorio central de portafolios', 'Oficina de gestión de portafolios'];
+  const mlist = $('#mlist');
+  if (mlist) {
+    $('#mlevels').innerHTML = MLEVELS.map(([n, d], i) => `<div><span class="n">${i + 1}</span><b>${esc(n)}</b><span>${esc(d)}</span></div>`).join('');
+    mlist.innerHTML = MATTR.map((a, i) => `<div class="mrow"><span class="mname" id="mn-${i}">${esc(a)}</span><div class="mpick" role="radiogroup" aria-labelledby="mn-${i}">${[1, 2, 3, 4, 5].map(n => `<label><input type="radio" name="mat-${i}" value="${n}"${n === 1 ? ' checked' : ''} aria-label="Nivel ${n}: ${esc(MLEVELS[n - 1][0])}"><span aria-hidden="true">${n}</span></label>`).join('')}</div></div>`).join('');
+    const msum = $('#msum');
+    const paintMat = () => {
+      const v = MATTR.map((_, i) => { const c = $(`input[name="mat-${i}"]:checked`, mlist); return c ? +c.value : 1; });
+      const avg = v.reduce((a, b) => a + b, 0) / v.length;
+      const lvl = MLEVELS[Math.min(4, Math.max(0, Math.round(avg) - 1))][0];
+      const min = Math.min(...v), max = Math.max(...v);
+      const weakAll = MATTR.filter((_, i) => v[i] === min);
+      const weak = min === 5 ? 'Todos los atributos están en el nivel 5.' : `<b>Por dónde empezar:</b> ${weakAll.slice(0, 3).map(esc).join(', ')}${weakAll.length > 3 ? ' y otros' : ''}.`;
+      msum.innerHTML = `<p class="caption">Promedio de los 14 atributos</p><span class="bignum">${avg.toLocaleString('es', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</span><p><b>Nivel ${Math.round(avg)} · ${esc(lvl)}</b></p><div class="mbars" role="img" aria-label="Perfil de madurez: un nivel por atributo">${v.map((x, i) => `<i class="${min < max && x === min ? 'low' : ''}" style="--v:${x}" title="${esc(MATTR[i])}: nivel ${x}"></i>`).join('')}</div><p class="caption">Cada barra es un atributo, en el orden de la lista. En rojo, los más bajos.</p><p class="mweak">${weak}</p><p class="src">Para la autora, lo ideal es el nivel 5, pero un nivel 3 bien implantado en un área crítica ya aporta mucho. Aconseja definir métricas para saber cuándo se pasa de nivel.</p>`;
+    };
+    mlist.addEventListener('change', paintMat);
+    paintMat();
+  }
+
+  /* ---------- Capítulo 6: los nueve entregables ---------- */
+  const DLV = [
+    ['Plan estratégico del portafolio', 'El qué', 'Reúne las opciones, preferencias y criterios para alinear y gestionar el portafolio. Es general, de largo plazo y se enfoca en el qué, no en el cómo.', ['Estrategia', 'Estructura', 'Contribución a los objetivos', 'Métricas', 'Modelo de priorización', 'Hitos', 'Beneficios', 'Recursos y financiamiento', 'Riesgos y dependencias', 'Comunicaciones'], 'Cuando cambia la estrategia. Para el PMI va antes que el acta y la guía.', 'Plantilla 1'],
+    ['Acta de constitución del portafolio', 'La autorización', 'Inicia y autoriza formalmente el portafolio. Asigna a su gerente y le da autoridad para aplicar los recursos a los componentes. Es breve y estable.', ['Nombre, visión y alcance', 'Estructura', 'Justificación', 'Beneficios', 'Criterios de éxito', 'Hitos', 'Interesados', 'Recursos', 'Liderazgo', 'Aprobación'], 'Poco: sobre todo cuando cambia la estrategia de la organización o la del portafolio.', 'Plantilla 3'],
+    ['Mapa de ruta del portafolio', 'El cuándo', 'Muestra en una línea de tiempo de meses, trimestres o años cuándo y en qué orden se ejecuta cada componente, con sus hitos y, a veces, su vínculo con los objetivos y sus dependencias.', ['Componentes', 'Línea de tiempo', 'Secuencia o paralelo', 'Hitos', 'Dependencias'], 'Es dinámico: cambia con el mercado, los costos, los riesgos y cada optimización.', 'Plantilla 11'],
+    ['Plan de gestión del portafolio', 'El cómo', 'Describe cómo se identifican, aprueban, priorizan, balancean, controlan e informan los componentes. Es la línea base para medir el avance en el tablero de mando y se desarrolla de forma iterativa.', ['Gobernanza', 'Cambios estratégicos', 'Plan financiero de 12 meses', 'Conformidad legal y normativa', 'Balanceo y optimización', 'Monitoreo', 'Dependencias', 'Comunicaciones', 'Cronograma de recursos críticos', 'Adquisiciones', 'Riesgos', 'Beneficios'], 'Con los cambios estratégicos: prioridades, estructura, riesgos e interesados.', 'Plantilla 6'],
+    ['Caso de negocio', 'El porqué de cada componente', 'Convierte una idea, necesidad u oportunidad en una propuesta de inversión. PRINCE2 lo llama caso de negocio; el estándar del PMI, propuesta de componente. Debe seguir vigente toda la vida del componente: si pierde su justificación, el componente se suspende.', ['Resumen ejecutivo', 'Justificación', 'Alternativas, incluida no hacerlo', 'Beneficios esperados', 'Tiempos y costos', 'Costo-beneficio: ROI, VPN, TIR, repago', 'Riesgos', 'Aprobación'], 'Puede haber uno preliminar y otro definitivo. Los ejecutivos responden por él.', 'Plantilla 4'],
+    ['Inventario de componentes potenciales', 'Lo que se pide', 'La lista viva del trabajo solicitado que todavía no es un componente: proyectos nuevos, cambios, pedidos regulatorios, ideas de clientes. Cada solicitud tiene su ficha.', ['Solicitud', 'Solicitante', 'Fecha', 'Tipo', 'Estado', 'Interna o externa'], 'Todo el tiempo, a medida que llegan propuestas. Sirve para detectar y eliminar redundancias.', 'Plantilla 5'],
+    ['Portafolio', 'Lo que se hace', 'La lista actualizada de componentes que aportan a objetivos estratégicos, o que son obligatorios. Cada uno lleva los mismos atributos, para compararlos, filtrarlos, agruparlos y ordenarlos.', ['Atributos', 'Categorías', 'Ranking', 'Mezcla'], 'Cada vez que se optimiza; por ejemplo, cuando suben los costos.', ''],
+    ['Repositorio central de portafolios', 'Todos los portafolios', 'Una lista única de todos los portafolios de la organización con sus costos, beneficios, hitos, riesgos y desempeño. Puede ser una hoja de cálculo o una pantalla de software.', ['Costos', 'Beneficios', 'Hitos', 'Riesgos', 'Desempeño'], 'Suele ser lo primero que se arma. Revela portafolios duplicados o sin objetivo estratégico.', ''],
+    ['Diagrama de interdependencias', 'Qué depende de qué', 'Una red que muestra cómo se conectan los componentes entre sí y con su entorno. Se usa para armar el mapa de ruta y para gestionar los riesgos.', ['Nodos', 'Dirección', 'Intensidad', 'Tipo de dependencia'], 'Junto con el mapa de ruta y el registro de riesgos.', 'Plantilla 13']
+  ];
+  const dlv = $('#dlv');
+  if (dlv) {
+    const LANES = [['¿Qué haremos y cómo?', [0, 1, 2, 3], true], ['¿Qué entra al portafolio?', [5, 4, 6], true], ['¿Cómo se ve el conjunto?', [7, 8], false]];
+    dlv.innerHTML = LANES.map(([t, ids, seq]) => `<div class="lane"><h3>${esc(t)}</h3><div class="row">${ids.map((id, j) => `${j && seq ? '<span class="arr" aria-hidden="true">→</span>' : ''}<button class="dbtn" type="button" data-dlv="${id}" aria-pressed="false"><small>${esc(DLV[id][1])}</small>${esc(DLV[id][0])}</button>`).join('')}</div></div>`).join('');
+    const dOut = $('#dlv-out');
+    const showDlv = (i, first) => {
+      $$('[data-dlv]', dlv).forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.dlv === i)));
+      const [t, k, d, parts, when, tpl] = DLV[i];
+      const html = `<p class="caption">${esc(k)}</p><h3>${esc(t)}</h3><p class="body">${esc(d)}</p><p class="cap2">Qué contiene</p><div class="chips">${parts.map(p => `<span class="chip">${esc(p)}</span>`).join('')}</div><dl class="facts" style="margin-top:18px"><dt>Cuándo cambia</dt><dd>${esc(when)}</dd>${tpl ? `<dt>En el libro</dt><dd>${esc(tpl)} del apéndice</dd>` : ''}</dl>`;
+      first ? (dOut.innerHTML = html) : swap(dOut, html);
+    };
+    dlv.addEventListener('click', e => { const b = e.target.closest('[data-dlv]'); if (b) showDlv(+b.dataset.dlv); });
+    showDlv(0, true);
+  }
+
+  /* ---------- Capítulo 6: comparar componentes por atributos ---------- */
+  const rankEl = $('#rank');
+  if (rankEl) {
+    const DOE = [['Ford', 2380000, 33000], ['Nissan', 120000, 1300], ['Tesla', 52000, 1500]];
+    let key = 'co2', onlyBig = false;
+    rankEl.innerHTML = DOE.map(r => `<div class="rrow" data-k="${r[0]}"><b>Proyecto ${r[0]}</b><div class="rbar"><i></i></div><output></output></div>`).join('');
+    const rowEls = new Map($$('.rrow', rankEl).map(r => [r.dataset.k, r]));
+    const paintRank = () => {
+      const idx = key === 'co2' ? 1 : 2, unit = key === 'co2' ? 't de CO₂ al año' : 'empleos';
+      const sorted = [...DOE].sort((a, b) => b[idx] - a[idx]), max = sorted[0][idx];
+      const before = new Map([...rowEls].map(([k, el]) => [k, el.getBoundingClientRect().top]));
+      sorted.forEach(r => {
+        const el = rowEls.get(r[0]);
+        $('i', el).style.width = (r[idx] / max * 100).toFixed(2) + '%';
+        $('output', el).textContent = `${r[idx].toLocaleString('es')} ${unit}`;
+        el.classList.toggle('out', onlyBig && r[2] < 2000);
+        rankEl.appendChild(el);
+      });
+      if (!calm()) rowEls.forEach((el, k) => {
+        const dy = before.get(k) - el.getBoundingClientRect().top;
+        if (dy && el.animate) el.animate([{ transform: `translateY(${dy}px)` }, { transform: 'none' }], { duration: 550, easing: 'cubic-bezier(.16,1,.3,1)' });
+      });
+    };
+    initSeg($('[data-seg="rank"]'), v => { key = v; paintRank(); });
+    $('#only-big').addEventListener('change', e => { onlyBig = e.target.checked; paintRank(); });
+    paintRank();
+  }
+
+  /* ---------- Capítulo 6: mapa y matriz de interdependencias ---------- */
+  const depBox = $('#dep');
+  if (depBox) {
+    const NODES = { A: 'Rediseño de procesos', B: 'Sistema informático', C: 'Servicio web', D: 'Portal de clientes', E: 'Obra A', F: 'Obra B' };
+    const LEVEL = { 1: 'menor', 2: 'media', 3: 'crítica' };
+    const EDGES = [
+      ['A', 'B', 'aprendizaje', 3, 'el sistema no puede empezar hasta que termine el rediseño de procesos', false],
+      ['C', 'D', 'entregable', 3, 'el portal necesita el servicio web en la fecha prometida', false],
+      ['B', 'D', 'entregable', 2, 'el portal usa datos del nuevo sistema', false],
+      ['E', 'F', 'recursos', 2, 'comparten ingenieros civiles y una retroexcavadora', true]
+    ];
+    const depOut = $('#dep-out');
+    const idle = 'Selecciona un componente para ver de qué depende y qué depende de él.';
+    depOut.textContent = idle;
+    let selected = null;
+    const describe = n => {
+      const needs = EDGES.filter(e => e[1] === n || (e[5] && e[0] === n)).map(e => { const o = e[1] === n ? e[0] : e[1]; return `${o} (${e[2]}, ${LEVEL[e[3]]}: ${e[4]})`; });
+      const gives = EDGES.filter(e => e[0] === n || (e[5] && e[1] === n)).map(e => { const o = e[0] === n ? e[1] : e[0]; return `${o} (${e[2]}, ${LEVEL[e[3]]})`; });
+      return `<b>${n} · ${esc(NODES[n])}.</b> Depende de: ${needs.length ? esc(needs.join('; ')) : 'ningún componente'}. De él depende: ${gives.length ? esc(gives.join('; ')) : 'ningún componente'}.`;
+    };
+    const selectNode = n => {
+      selected = selected === n ? null : n;
+      depBox.classList.toggle('sel', !!selected);
+      const rel = new Set(), hlE = new Set();
+      if (selected) {
+        rel.add(selected);
+        EDGES.forEach((e, i) => { if (e[0] === selected || e[1] === selected) { hlE.add(String(i)); rel.add(e[0]); rel.add(e[1]); } });
+      }
+      $$('.dep-n', depBox).forEach(g => { const k = g.dataset.n; g.classList.toggle('on', k === selected); g.classList.toggle('hl', rel.has(k)); g.setAttribute('aria-pressed', String(k === selected)); });
+      $$('.dep-name', depBox).forEach(t => t.classList.toggle('hl', rel.has(t.dataset.for)));
+      $$('.dep-e,.dep-lbl', depBox).forEach(el => el.classList.toggle('hl', hlE.has(el.dataset.e)));
+      if (selected) swap(depOut, describe(selected)); else swap(depOut, esc(idle));
+    };
+    $$('.dep-n', depBox).forEach(g => {
+      g.addEventListener('click', () => selectNode(g.dataset.n));
+      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectNode(g.dataset.n); } });
+    });
+    const ids = Object.keys(NODES);
+    const depends = (row, colN) => EDGES.some(e => (e[1] === row && e[0] === colN) || (e[5] && e[0] === row && e[1] === colN));
+    $('#dmat').innerHTML = `<thead><tr><th scope="col">Componente</th>${ids.map(c => `<th scope="col">${c}</th>`).join('')}</tr></thead><tbody>${ids.map(r => `<tr><th scope="row">${r} · ${esc(NODES[r])}</th>${ids.map(c => r === c ? '<td class="diag"></td>' : depends(r, c) ? `<td class="x"><span aria-hidden="true">✕</span><span class="vh">${r} depende de ${c}</span></td>` : '<td></td>').join('')}</tr>`).join('')}</tbody>`;
+    initSeg($('[data-seg="dep"]'), v => showPanel($('#dep-panels'), v));
+  }
+
   /* ---------- Barra global: línea y modo oscuro sobre bandas negras ---------- */
   const gnav = $('#gnav');
   const onScroll = () => gnav.classList.toggle('scrolled', window.scrollY > 4);
@@ -1994,6 +2623,7 @@ html[data-dir="back"]::view-transition-new(root){animation-name:vt-in-b}
   const motionBtn = $('#motion-btn');
   const setUserPaused = p => {
     userPaused = p;
+    root.classList.toggle('motion-paused', p);
     motionBtn.setAttribute('aria-pressed', String(p));
     const label = p ? 'Reanudar animaciones' : 'Pausar animaciones';
     motionBtn.setAttribute('aria-label', label); motionBtn.title = label;
@@ -2059,7 +2689,10 @@ html[data-dir="back"]::view-transition-new(root){animation-name:vt-in-b}
     const changed = view !== current;
     if (!first && changed && vtOK && !calm()) {
       root.dataset.dir = num(view) >= num(current) ? 'fwd' : 'back';
-      try { document.startViewTransition(() => apply(false, false)); } catch (e) { apply(false, true); }
+      try {
+        const vt = document.startViewTransition(() => apply(false, false));
+        [vt.ready, vt.finished, vt.updateCallbackDone].forEach(p => p && p.catch(() => {}));
+      } catch (e) { apply(false, true); }
     } else apply(first, !first && changed && !calm());
   };
   window.addEventListener('hashchange', () => show(false));
